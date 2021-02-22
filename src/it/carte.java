@@ -5,9 +5,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class carte {
-    private static int top;
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        int top;
         Random rnd = new Random();
         Scanner sc = new Scanner(System.in);
         String[] semi = {"H", "C", "S", "D"};
@@ -16,19 +16,24 @@ public class carte {
         ArrayList<String> carteBanco = new ArrayList<String>();
         final int BLACKJACK = 21;
 
+        carte player1 = new carte();
+
         boolean t = true;
         int creditiIniziali = 0;
         int creditiScommessi = 0;
         int creditiFinali = 0;
         int totaleGiocatore = 0;
         int totaleBanco = 0;
+        int puntiGiocatore = 0;
+
+        boolean stai;
 
         int lunghezzaMax = semi.length * valore.length * 2;
         String[] mazzo = new String[lunghezzaMax];
         top = mazzo.length - 1;
 
-        creaMazzo(semi, valore, mazzo);
-        mescola(rnd, mazzo);
+        player1.creaMazzo(semi, valore, mazzo);
+        player1.mescola(rnd, mazzo);
 
         while(creditiFinali<5){
             System.out.println("Quanti crediti vuoi caricare? (numero minimo 5)");
@@ -40,16 +45,33 @@ public class carte {
             creditiScommessi = sc.nextInt();
             System.out.println("Hai puntato: "+ creditiScommessi + " crediti, Buona Fortuna!");
 
-            for(int i = 0; i<2; i++)
-            {
-                carteGiocatore.add(pescaCarta(mazzo, top));
+            for(int i = 0; i<2; i++) {
+                carteGiocatore.add(player1.pescaCarta(mazzo, top));
+                puntiGiocatore = player1.sommaPunti(player1.pescaCarta(mazzo, top), puntiGiocatore);
                 top--;
             }
+
+            stai = true;
+
+            do{
+
+                System.out.println("Possiedi "+ puntiGiocatore +" punti, vuoi pescare una carta o stare? (1/2)");
+                if(sc.nextInt()==1) {
+                    carteGiocatore.add(player1.pescaCarta(mazzo, top));
+                    puntiGiocatore = player1.sommaPunti(player1.pescaCarta(mazzo, top), puntiGiocatore);
+                    top--;
+                }
+                else stai = false;
+
+            }while(stai&&puntiGiocatore<=21);
+
             System.out.println("Hai pescato: " + carteGiocatore);
+            carteGiocatore.clear();
+            puntiGiocatore=0;
         }
     }
 
-    private static void creaMazzo(String[] semi, String[] valore, String[] mazzo) {
+    private void creaMazzo(String[] semi, String[] valore, String[] mazzo) {
         int k = 0;
         int j = 0;
         for (int l = 0; l != 2; l++) {
@@ -71,8 +93,8 @@ public class carte {
         }*/
     }
 
-    private static void mescola(Random rnd, String[] mazzo) {
-        int scambia = 2000;
+    private void mescola(Random rnd, String[] mazzo) {
+        int scambia = 5000;
 
         int indiceUno;
         int indiceDue;
@@ -96,19 +118,45 @@ public class carte {
         }*/
     }
 
-    public static String pescaCarta(String[] mazzo, int top) {
+    public String pescaCarta(String[] mazzo, int top) {
         String cartaPescata = null;
         if (mazzo.length==0)
             throw new IllegalStateException("Impossibile pescare una dal mazzo");
         else
-            cartaPescata = mazzo[top--];
+            cartaPescata = mazzo[top];
         return cartaPescata;
     }
-}
 
-/*
-    carteGiocatore.add(pescaCarta(mazzo, top));
-    top--;
-    carteGiocatore.add(pescaCarta(mazzo, top));
-    System.out.println(carteGiocatore);
-*/
+    public int sommaPunti(String carta, int puntiGiocatore){
+        Scanner sc = new Scanner(System.in);
+        if(carta.contains("A")){
+            if(puntiGiocatore<11) {
+                System.out.println("Attualmente hai " + puntiGiocatore + " vuoi far valere la carta 1 o 11?");
+                if (sc.nextInt() == 1)
+                    puntiGiocatore += 1;
+                else puntiGiocatore += 11;
+            } else puntiGiocatore+=1;
+
+        } else if (carta.contains("2")){
+            puntiGiocatore+=2;
+        } else if (carta.contains("3")){
+            puntiGiocatore+=3;
+        } else if (carta.contains("4")){
+            puntiGiocatore+=4;
+        } else if (carta.contains("5")){
+            puntiGiocatore+=5;
+        } else if (carta.contains("6")){
+            puntiGiocatore+=6;
+        } else if (carta.contains("7")){
+            puntiGiocatore+=7;
+        } else if (carta.contains("8")){
+            puntiGiocatore+=8;
+        } else if (carta.contains("9")){
+            puntiGiocatore+=9;
+        } else{
+            puntiGiocatore+=10;
+        }
+
+        return puntiGiocatore;
+    }
+}
