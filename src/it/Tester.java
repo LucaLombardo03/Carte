@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class carte {
+public class Tester {
 
     public static void main(String[] args) {
         int top;
@@ -16,7 +16,7 @@ public class carte {
         ArrayList<String> carteBanco = new ArrayList<String>();
         final int BLACKJACK = 21;
 
-        carte player1 = new carte();
+        Tester player1 = new Tester();
 
         boolean t = true;
         int creditiIniziali = 0;
