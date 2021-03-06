@@ -10,9 +10,12 @@ public class Deck {
     String[] suit = {"H", "C", "S", "D"};
     String[] value = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "0", "J", "Q", "K"};
 
-    public void buildDeck() {
-
+    public Deck() {
         Deck = new ArrayList<Card>();
+    }
+
+    //costruisco il mazzo
+    public void buildDeck() {
 
         int k = 0;
         int j = 0;
@@ -29,22 +32,26 @@ public class Deck {
         }
 
         Deck.add(Deck.get(1));
+        shuffle(); //mescola automaticamente il mazzo dopo esser stato creato.
+
     }
 
+
+    //Stampo il mazzo
     public void printDeck() {
         for (int i = 0; i < 104; i++) {
-            System.out.println(Deck.get(i).getValue()+Deck.get(i).getSuit());
+            System.out.println(Deck.get(i).getValue() + Deck.get(i).getSuit());
         }
     }
 
+
+    //mescolo il mazzo (parte automaticamente dopo aver creato il mazzo)
     public void shuffle() {
-        int scambia = 1000000;
+        int scambia = 3000000;
 
         int indiceUno;
         int indiceDue;
-        String variabileSupporto;
-        Random rnd = new Random();
-
+        Random rnd = new Random(System.currentTimeMillis());
         for (int i = 0; i != scambia; i++) {
             indiceUno = rnd.nextInt(Deck.size() - 1);
             indiceDue = rnd.nextInt(Deck.size() - 1);
@@ -56,5 +63,21 @@ public class Deck {
         }
 
     }
+
+    public ArrayList<Card> getDeck() {
+        return Deck;
+    }
+
+    public void setDeck(ArrayList<Card> Deck) {
+        this.Deck = Deck;
+    }
+
+
+    public Card drawCard() {
+        Card card = Deck.get(0);
+        Deck.remove(0);
+        return card;
+    }
+    //end
 
 }
