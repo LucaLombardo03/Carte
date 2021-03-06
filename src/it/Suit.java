@@ -1,5 +1,7 @@
 package it;
 
+import java.util.ArrayList;
+
 public enum Suit {
-    CLUB, DIAMOND, HEARTH, SPADE
+    C, D, H, S
 }

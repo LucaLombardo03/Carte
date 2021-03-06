@@ -1,6 +1,7 @@
 package it;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,6 +15,7 @@ public class Tester {
         String[] valore = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "0", "J", "Q", "K"};
         ArrayList<String> carteGiocatore = new ArrayList<String>();
         ArrayList<String> carteBanco = new ArrayList<String>();
+
         final int BLACKJACK = 21;
 
         Tester player1 = new Tester();
@@ -26,7 +28,7 @@ public class Tester {
         int totaleBanco = 0;
         int puntiGiocatore = 0;
 
-        boolean stai;
+        boolean stai = false;
 
         int lunghezzaMax = semi.length * valore.length * 2;
         String[] mazzo = new String[lunghezzaMax];
