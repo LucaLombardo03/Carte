@@ -12,6 +12,10 @@ public class Hand {
         createHand(); // creo una nuova mano vuota
     }
 
+    public Hand() {
+
+    }
+
     public void createHand() {
         hand = new ArrayList<Card>();
         addCard();
@@ -33,6 +37,10 @@ public class Hand {
         return hand;
     }
 
+    public void setHand(ArrayList<Card> hand) {
+        this.hand = hand;
+    }
+
     public int getPoints() {
         int points = 0;
         int aceCounting = 0;
@@ -42,6 +50,7 @@ public class Hand {
         for (int addingNotAces = 0; addingNotAces != hand.size(); addingNotAces++) {
 
             card = hand.get(addingNotAces).getValue(); //salvo il valore della carta in una variabile per sommare i punti
+
             switch (card) {
                 case "A" -> aceCounting++;
                 case "2" -> points += 2;

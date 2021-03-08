@@ -8,7 +8,8 @@ public class Main {
         Hand dealer;
 
         Hand player;
-
+        Balance playerBalance;
+        float startingMoney=100;
         deck.buildDeck();
         deck.shuffle();
         //deck.printDeck();
@@ -29,6 +30,8 @@ public class Main {
 
         System.out.println(player.getPoints());
 
+        //
+        playerBalance = new Balance(startingMoney,player.getHand(),dealer.getHand());
     }
 }
 
