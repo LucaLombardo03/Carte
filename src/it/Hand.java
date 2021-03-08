@@ -42,25 +42,17 @@ public class Hand {
         for (int addingNotAces = 0; addingNotAces != hand.size(); addingNotAces++) {
 
             card = hand.get(addingNotAces).getValue(); //salvo il valore della carta in una variabile per sommare i punti
-            if (card.equals("A")) aceCounting++;
-            else if (card.equals("2")) {
-                points += 2;
-            } else if (card.equals("3")) {
-                points += 3;
-            } else if (card.equals("4")) {
-                points += 4;
-            } else if (card.equals("5")) {
-                points += 5;
-            } else if (card.equals("6")) {
-                points += 6;
-            } else if (card.equals("7")) {
-                points += 7;
-            } else if (card.equals("8")) {
-                points += 8;
-            } else if (card.equals("9")) {
-                points += 9;
-            } else {
-                points += 10;
+            switch (card) {
+                case "A" -> aceCounting++;
+                case "2" -> points += 2;
+                case "3" -> points += 3;
+                case "4" -> points += 4;
+                case "5" -> points += 5;
+                case "6" -> points += 6;
+                case "7" -> points += 7;
+                case "8" -> points += 8;
+                case "9" -> points += 9;
+                default -> points += 10;
             }
 
         }
