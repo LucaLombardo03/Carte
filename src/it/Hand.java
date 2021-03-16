@@ -18,8 +18,6 @@ public class Hand {
 
     public void createHand() {
         hand = new ArrayList<Card>();
-        addCard();
-        addCard();
     }
 
 
@@ -31,6 +29,10 @@ public class Hand {
         for (int i = 0; i != hand.size(); i++) {
             System.out.println(hand.get(i).getValue() + hand.get(i).getSuit());
         }
+    }
+    //per dealer
+    public void printCard() {
+        System.out.println(hand.get(0).getValue() + hand.get(0).getSuit());
     }
 
     public ArrayList<Card> getHand() {

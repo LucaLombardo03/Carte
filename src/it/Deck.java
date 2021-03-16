@@ -30,10 +30,8 @@ public class Deck {
                 j = 0;
             }
         }
-
         Deck.add(Deck.get(1));
-        shuffle(); //mescola automaticamente il mazzo dopo esser stato creato.
-
+        shuffle(); //mescola automaticamente il mazzo dopo esser stato creato
     }
 
 
